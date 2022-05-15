@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class StatsComponent implements OnInit {
 
   items: Observable<any[]>;
+  posts: Observable<any[]>;
   constructor(db: AngularFireDatabase) {
 
     // const docRef = doc(this.firestore, "donors", "/");
@@ -25,6 +26,7 @@ export class StatsComponent implements OnInit {
     // });
 
     this.items = db.list('donors').valueChanges();
+    this.posts = db.list('posts').valueChanges();
 
   }
 

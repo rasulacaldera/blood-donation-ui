@@ -3,3 +3,9 @@
     {{ item | json }}
   </li>
 </ul>
+
+<ul>
+  <li *ngFor="let post of posts | async">
+    {{ post | json }}
+  </li>
+</ul>
