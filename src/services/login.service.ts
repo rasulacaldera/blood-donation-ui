@@ -1,24 +1,33 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { SERVER } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private LOGIN_SERVICE: string = SERVER + '/login';
+  private loggedInUser: any = undefined
 
-  private loggedInUser: any = undefined;
+  constructor(
+    private afAuth: AngularFireAuth,
+    private router: Router) { }
 
-  constructor(private http: HttpClient) { }
-
-  login(login: any) {
-    // return this.http.post(this.LOGIN_SERVICE, login);
-    return Observable.create((obs: any) => {
-      this.loggedInUser = login;
-      obs.next(this.loggedInUser);
+  login(username: string, password: string) {
+    this.afAuth.signInWithEmailAndPassword(username, password).then(
+      res => {
+        this.loggedInUser = res
+        this.router.navigate(['/home']);
+      }
+    ).catch(err => {
+      console.log(err)
     })
   }
+
+  isAdminLogin() {
+    return this.loggedInUser.user.multiFactor.user.email === "admin@gmail.com";
+  }
+
 }

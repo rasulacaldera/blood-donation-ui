@@ -3,7 +3,7 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-stats',
+  selector: 'stats',
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.scss']
 })

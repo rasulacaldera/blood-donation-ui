@@ -12,26 +12,27 @@
               alt="profile"
             />
           </div>
-
-          <div class="mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="Username"
-              aria-describedby="emailHelp"
-              placeholder="User Name"
-              formControlName="userName"
-            />
-          </div>
-          <div class="mb-3">
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              placeholder="password"
-              formControlName="password"
-            />
-          </div>
+          <form [formGroup]="loginForm">
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="Username"
+                aria-describedby="emailHelp"
+                placeholder="User Name"
+                formControlName="userName"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="password"
+                formControlName="password"
+              />
+            </div>
+          </form>
           <div class="text-center">
             <button class="btn btn-color px-5 mb-5 w-100" (click)="onLogin()">
               Login
