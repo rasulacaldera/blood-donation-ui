@@ -1,15 +1,35 @@
 <div class="height-100 stat-container">
   <div class="row">
     <div class="col-md-5 stat-container-card card">
-      <h3>Donor Blood Types</h3>
+      <h3 class="mt-3">Donor Blood Types</h3>
+      <div class="card-content">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Group</th>
+              <th scope="col">Donor Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bloodGroup of bloodGroupCount">
+              <td>{{ bloodGroup.type }}</td>
+              <td>{{ bloodGroup.count }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="col-md-5 stat-container-card card">
-      <h3>Active Posts</h3>
+      <h3 class="mt-3">Active Posts</h3>
+      <div class="card-content">
+        {{ postCount }}
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-5 stat-container-card card">
-      <h3>Active Donots</h3>
+      <h3 class="mt-3">Active Donors</h3>
+      <div class="card-content">{{ activeDonors }} / {{ totalDonors }}</div>
     </div>
     <div class="col-md-5 stat-container-card card">
       <h3 class="mt-3">Top Donors</h3>

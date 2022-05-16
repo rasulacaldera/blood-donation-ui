@@ -51,8 +51,17 @@ export class StatsComponent implements OnInit {
 
       temp = [].concat.apply([], temp)
 
+      this.bloodGroupCount = []
+
       for (const type of temp) {
-        this.bloodGroupCount[type] = this.bloodGroupCount[type] ? this.bloodGroupCount[type] + 1 : 1;
+        if (this.hasBloodType(this.bloodGroupCount, type)) {
+          this.bloodGroupCount.filter(grp => grp.type === type).map(grp => grp.count++)
+        } else {
+          this.bloodGroupCount[this.bloodGroupCount.length] = {
+            "type": type,
+            "count": 1
+          }
+        }
       }
     })
 
@@ -73,5 +82,13 @@ export class StatsComponent implements OnInit {
     return 0;
   }
 
+  hasBloodType(currentType: any[], type: any) {
+    for (const bloodGrp of currentType) {
+      if (bloodGrp.type == type) {
+        return true
+      }
+    }
+    return false;
+  }
 
 }
