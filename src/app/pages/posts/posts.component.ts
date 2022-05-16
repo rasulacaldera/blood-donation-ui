@@ -20,4 +20,8 @@ export class PostsComponent implements OnInit {
     this.isViewMode = false;
   }
 
+  onCreateNewPost() {
+    this.isViewMode = true;
+  }
+
 }

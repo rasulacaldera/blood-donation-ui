@@ -29,6 +29,7 @@ export class LoginService {
 
   logout() {
     sessionStorage.removeItem('loggedInUser');
+    this.router.navigate(['/login']);
   }
 
   isAdminLogin() {

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,6 +10,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./post-create.component.scss']
 })
 export class PostCreateComponent implements OnInit {
+
+  @Output() onCreateNewPost = new EventEmitter<string>();
 
   postForm = new FormGroup({
     Name: new FormControl(''),
@@ -20,7 +23,7 @@ export class PostCreateComponent implements OnInit {
     Contact: new FormControl('')
   });
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -28,6 +31,7 @@ export class PostCreateComponent implements OnInit {
   onSave() {
     const tutorialsRef = this.db.list('posts');
     tutorialsRef.push(this.postForm.value);
+    this.onCreateNewPost.emit()
 
   }
 
