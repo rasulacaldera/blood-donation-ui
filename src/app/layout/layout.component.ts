@@ -16,4 +16,7 @@ export class LayoutComponent implements OnInit {
     this.adminLogin = this.loginService.isAdminLogin();
   }
 
+  logout() {
+    this.loginService.logout();
+  }
 }

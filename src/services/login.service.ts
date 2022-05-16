@@ -27,6 +27,10 @@ export class LoginService {
     })
   }
 
+  logout() {
+    sessionStorage.removeItem('loggedInUser');
+  }
+
   isAdminLogin() {
     return sessionStorage.getItem('loggedInUser') === "admin@gmail.com";
   }
