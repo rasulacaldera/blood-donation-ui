@@ -15,6 +15,7 @@ export class StatsComponent implements OnInit {
   activeDonors: number = 0;
   totalDonors: number = 0;
   topDonors: any[] = []
+  bloodGroupCount: any[] = []
   postCount: number = 0
 
 
@@ -50,6 +51,20 @@ export class StatsComponent implements OnInit {
       // console.log(Object.values(merged));
       // console.log(Object.keys(merged));
       // console.log(this.test)
+      temp = []
+      res.map(arr => {
+        temp[temp.length] = Object.keys(arr)
+      });
+
+      temp = [].concat.apply([], temp)
+
+      for (const type of temp) {
+        this.bloodGroupCount[type] = this.bloodGroupCount[type] ? this.bloodGroupCount[type] + 1 : 1;
+      }
+
+      console.log(this.bloodGroupCount)
+      console.log(temp)
+
     })
 
     this.posts.subscribe(res => {
