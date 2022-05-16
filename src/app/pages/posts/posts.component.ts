@@ -9,11 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class PostsComponent implements OnInit {
 
-  posts: Observable<any[]>;
-
-  constructor(db: AngularFireDatabase) {
-    this.posts = db.list('posts').valueChanges();
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }

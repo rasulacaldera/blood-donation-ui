@@ -5,13 +5,17 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { HomeComponent } from './home/home.component';
 import { StatsComponent } from './stats/stats.component';
 import { PostsComponent } from './posts/posts.component';
+import { PostShowComponent } from './posts/post-show/post-show.component';
+import { PostCreateComponent } from './posts/post-create/post-create.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     StatsComponent,
-    PostsComponent
+    PostsComponent,
+    PostShowComponent,
+    PostCreateComponent
   ],
   imports: [
     CommonModule,
