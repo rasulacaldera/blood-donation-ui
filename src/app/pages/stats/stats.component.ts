@@ -9,29 +9,43 @@ import { Observable } from 'rxjs';
 })
 export class StatsComponent implements OnInit {
 
-  items: Observable<any[]>;
+  donors: Observable<any[]>;
   posts: Observable<any[]>;
+
+  test: any[] = []
+  test2: any[] = []
+
   constructor(db: AngularFireDatabase) {
-
-    // const docRef = doc(this.firestore, "donors", "/");
-    // const docSnap = getDoc(docRef);
-
-    // console.log(getDoc(docRef))
-
-    // console.log(doc(this.firestore, "cities", "SF"))
-    // this.items = 
-    // console.log()
-    // db.collection("camp details").valueChanges().subscribe(res => {
-    //   console.log(res)
-    // });
-
-    this.items = db.list('donors').valueChanges();
+    this.donors = db.list('donors').valueChanges();
     this.posts = db.list('posts').valueChanges();
 
+    this.donors.subscribe(res => {
+
+      this.test = [];
+      this.test2 = []
+
+      res.map(arr => {
+        this.test[this.test.length] = Object.values(arr)
+      });
+
+      var merged = [].concat.apply([], this.test);
+
+      merged.map(it => {
+        this.test2[this.test2.length] = Object.values(it)
+      })
+
+
+
+      var merged2 = [].concat.apply([], this.test2);
+
+      console.log(merged2)
+
+      // console.log(Object.values(merged));
+      // console.log(Object.keys(merged));
+      // console.log(this.test)
+    })
   }
 
-  ngOnInit(): void {
-    // this.items = this.db.list('items').valueChanges();
-  }
+  ngOnInit(): void { }
 
 }
