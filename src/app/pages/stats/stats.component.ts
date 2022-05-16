@@ -12,8 +12,10 @@ export class StatsComponent implements OnInit {
   donors: Observable<any[]>;
   posts: Observable<any[]>;
 
-  test: any[] = []
-  test2: any[] = []
+  activeDonors: number = 0;
+  totalDonors: number = 0;
+  topDonors: any[] = []
+
 
   constructor(db: AngularFireDatabase) {
     this.donors = db.list('donors').valueChanges();
@@ -21,24 +23,28 @@ export class StatsComponent implements OnInit {
 
     this.donors.subscribe(res => {
 
-      this.test = [];
-      this.test2 = []
+      var temp: any[] = [];
 
       res.map(arr => {
-        this.test[this.test.length] = Object.values(arr)
+        temp[temp.length] = Object.values(arr)
       });
 
-      var merged = [].concat.apply([], this.test);
+      var processedDonors = [].concat.apply([], temp);
 
-      merged.map(it => {
-        this.test2[this.test2.length] = Object.values(it)
+      temp = []
+
+      processedDonors.map(it => {
+        temp[temp.length] = Object.values(it)
       })
 
+      processedDonors = [].concat.apply([], temp);
 
+      this.totalDonors = processedDonors.length
+      this.activeDonors = processedDonors.filter((donor: any) => donor.TotalDonate > 0).length
+      this.topDonors = processedDonors.sort(this.compare).slice(0, 5)
 
-      var merged2 = [].concat.apply([], this.test2);
-
-      console.log(merged2)
+      console.log(this.topDonors)
+      console.log(processedDonors)
 
       // console.log(Object.values(merged));
       // console.log(Object.keys(merged));
@@ -47,5 +53,16 @@ export class StatsComponent implements OnInit {
   }
 
   ngOnInit(): void { }
+
+  compare(a: any, b: any) {
+    if (a.TotalDonate > b.TotalDonate) {
+      return -1;
+    }
+    if (a.TotalDonate < b.TotalDonate) {
+      return 1;
+    }
+    return 0;
+  }
+
 
 }
