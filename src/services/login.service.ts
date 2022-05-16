@@ -27,7 +27,8 @@ export class LoginService {
   }
 
   isAdminLogin() {
-    return this.loggedInUser.user.multiFactor.user.email === "admin@gmail.com";
+    console.log(this.loggedInUser)
+    return this.loggedInUser ? this.loggedInUser.user.multiFactor.user.email === "admin@gmail.com" : false;
   }
 
 }
