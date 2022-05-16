@@ -31,4 +31,8 @@ export class LoginService {
     return sessionStorage.getItem('loggedInUser') === "admin@gmail.com";
   }
 
+  isLoggedIn() {
+    return sessionStorage.getItem('loggedInUser') ? true : false;
+  }
+
 }

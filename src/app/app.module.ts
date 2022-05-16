@@ -13,6 +13,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginModule } from './login/login.module';
+import { AuthGuard } from 'src/guards/auth-guard';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { LoginModule } from './login/login.module';
     AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

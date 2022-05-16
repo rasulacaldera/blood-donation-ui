@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/guards/auth-guard';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 
@@ -12,7 +13,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
+        loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
+        canActivate: [AuthGuard]
       }
     ]
   },
