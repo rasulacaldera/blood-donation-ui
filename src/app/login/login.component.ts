@@ -21,8 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.loginServive.login(this.loginForm.value.userName, this.loginForm.value.password)
-
+    this.loginServive.login(this.loginForm.value.userName, this.loginForm.value.password);
   }
 
 }

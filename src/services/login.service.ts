@@ -32,6 +32,26 @@ export class LoginService {
     this.router.navigate(['/login']);
   }
 
+  SignUp(email: string, password: string) {
+    return this.afAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        this.SendVerificationMail();
+        // this.SetUserData(result.user);
+      })
+      .catch((error) => {
+        window.alert(error.message);
+      });
+  }
+
+  SendVerificationMail() {
+    return this.afAuth.currentUser
+      .then((u: any) => u.sendEmailVerification())
+      .then(() => {
+        this.router.navigate(['verify-email-address']);
+      });
+  }
+
   isAdminLogin() {
     return sessionStorage.getItem('loggedInUser') === "admin@gmail.com";
   }
