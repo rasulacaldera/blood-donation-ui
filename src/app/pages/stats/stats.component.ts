@@ -18,7 +18,6 @@ export class StatsComponent implements OnInit {
   bloodGroupCount: any[] = []
   postCount: number = 0
 
-
   constructor(db: AngularFireDatabase) {
     this.donors = db.list('donors').valueChanges();
     this.posts = db.list('posts').valueChanges();
