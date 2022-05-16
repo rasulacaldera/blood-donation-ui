@@ -42,15 +42,8 @@ export class StatsComponent implements OnInit {
       processedDonors = [].concat.apply([], temp);
 
       this.totalDonors = processedDonors.length
-      this.activeDonors = processedDonors.filter((donor: any) => donor.TotalDonate > 0).length
-      this.topDonors = processedDonors.sort(this.compare).slice(0, 5)
-
-      // console.log(this.topDonors)
-      // console.log(processedDonors)
-
-      // console.log(Object.values(merged));
-      // console.log(Object.keys(merged));
-      // console.log(this.test)
+      this.activeDonors = processedDonors.filter((donor: any) => donor.TotalDonate > 0).length;
+      this.topDonors = processedDonors.sort(this.compare).slice(0, 5);
       temp = []
       res.map(arr => {
         temp[temp.length] = Object.keys(arr)
@@ -61,14 +54,10 @@ export class StatsComponent implements OnInit {
       for (const type of temp) {
         this.bloodGroupCount[type] = this.bloodGroupCount[type] ? this.bloodGroupCount[type] + 1 : 1;
       }
-
-      console.log(this.bloodGroupCount)
-      console.log(temp)
-
     })
 
     this.posts.subscribe(res => {
-      this.postCount = res.length
+      this.postCount = res.length;
     })
   }
 
