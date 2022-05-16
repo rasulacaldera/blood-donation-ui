@@ -1,1 +1,74 @@
-<p>post-create works!</p>
+<form [formGroup]="postForm" class="row">
+  <div class="col-md-3">
+    <label for="Name">Name: </label>
+    <input id="Name" type="text" formControlName="Name" class="form-control" />
+  </div>
+
+  <div class="col-md-3">
+    <label for="Division">Division: </label>
+    <input
+      id="Division"
+      type="text"
+      formControlName="Division"
+      class="form-control"
+    />
+  </div>
+
+  <div class="col-md-1">
+    <label for="BloodGroup">Blood Group: </label>
+    <select id="BloodGroup" formControlName="BloodGroup" class="form-control">
+      <option [ngValue]="'A+'">A+</option>
+      <option [ngValue]="'A-'">A-</option>
+      <option [ngValue]="'AB+'">AB+</option>
+    </select>
+  </div>
+
+  <div class="col-md-2">
+    <label for="Date">Date: </label>
+    <input id="Date" type="date" formControlName="Date" class="form-control" />
+  </div>
+
+  <div class="col-md-2">
+    <label for="Time">Time: </label>
+    <input id="Time" type="time" formControlName="Time" class="form-control" />
+  </div>
+
+  <div class="col-md-3">
+    <label for="Address">Address: </label>
+    <input
+      id="Address"
+      type="text"
+      formControlName="Address"
+      class="form-control"
+    />
+  </div>
+
+  <div class="col-md-3">
+    <label for="Contact">Contact: </label>
+    <input
+      id="Contact"
+      type="text"
+      formControlName="Contact"
+      class="form-control"
+    />
+  </div>
+  <!-- 
+  <div class="col-md-2" *ngIf="!isCreateMode()">
+    <label for="status">Status: </label>
+    <select id="status" formControlName="status" class="form-control">
+      <option [ngValue]="'NEW'">NEW</option>
+      <option [ngValue]="'VERIFIED'">VERIFIED</option>
+      <option [ngValue]="'RESOLVED'">RESOLVED</option>
+    </select>
+  </div> -->
+
+  <div class="col-md-4">
+    <button
+      [disabled]="!saveBtnEnabled()"
+      (click)="onSave()"
+      class="btn btn-primary save-btn-mt"
+    >
+      Save
+    </button>
+  </div>
+</form>

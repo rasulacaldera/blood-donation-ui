@@ -9,9 +9,15 @@ import { Observable } from 'rxjs';
 })
 export class PostsComponent implements OnInit {
 
+  isViewMode = true;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onEnterCreateMode() {
+    this.isViewMode = false;
   }
 
 }

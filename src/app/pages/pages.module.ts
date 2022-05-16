@@ -7,6 +7,7 @@ import { StatsComponent } from './stats/stats.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostShowComponent } from './posts/post-show/post-show.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PostCreateComponent } from './posts/post-create/post-create.component';
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule { }
