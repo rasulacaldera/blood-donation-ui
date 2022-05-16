@@ -29,8 +29,8 @@ export class PostCreateComponent implements OnInit {
   }
 
   onSave() {
-    const tutorialsRef = this.db.list('posts');
-    tutorialsRef.push(this.postForm.value);
+    const posts = this.db.list('posts');
+    posts.push(this.postForm.value);
     this.onCreateNewPost.emit()
 
   }

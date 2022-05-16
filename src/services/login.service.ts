@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -13,6 +14,7 @@ export class LoginService {
 
   constructor(
     private afAuth: AngularFireAuth,
+    private db: AngularFireDatabase,
     private router: Router) { }
 
   login(username: string, password: string) {
@@ -32,24 +34,25 @@ export class LoginService {
     this.router.navigate(['/login']);
   }
 
-  SignUp(email: string, password: string) {
+  register(registerUser: any) {
     return this.afAuth
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(registerUser.Email, registerUser.Password)
       .then((result) => {
-        this.SendVerificationMail();
-        // this.SetUserData(result.user);
+        this.setUserData(registerUser);
+        this.router.navigate(['/login']);
       })
       .catch((error) => {
         window.alert(error.message);
       });
   }
 
-  SendVerificationMail() {
-    return this.afAuth.currentUser
-      .then((u: any) => u.sendEmailVerification())
-      .then(() => {
-        this.router.navigate(['verify-email-address']);
-      });
+  setUserData(userData: any) {
+    const tutorialsRef = this.db.list('hospitals');
+    tutorialsRef.push({
+      "Name": userData.Name,
+      "Email": userData.Email,
+      "City": userData.City
+    });
   }
 
   isAdminLogin() {
