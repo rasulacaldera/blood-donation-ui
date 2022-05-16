@@ -15,6 +15,7 @@ export class StatsComponent implements OnInit {
   activeDonors: number = 0;
   totalDonors: number = 0;
   topDonors: any[] = []
+  postCount: number = 0
 
 
   constructor(db: AngularFireDatabase) {
@@ -43,12 +44,16 @@ export class StatsComponent implements OnInit {
       this.activeDonors = processedDonors.filter((donor: any) => donor.TotalDonate > 0).length
       this.topDonors = processedDonors.sort(this.compare).slice(0, 5)
 
-      console.log(this.topDonors)
-      console.log(processedDonors)
+      // console.log(this.topDonors)
+      // console.log(processedDonors)
 
       // console.log(Object.values(merged));
       // console.log(Object.keys(merged));
       // console.log(this.test)
+    })
+
+    this.posts.subscribe(res => {
+      this.postCount = res.length
     })
   }
 
