@@ -19,6 +19,7 @@ export class LoginService {
     this.afAuth.signInWithEmailAndPassword(username, password).then(
       res => {
         this.loggedInUser = res
+        sessionStorage.setItem('loggedInUser', this.loggedInUser.user.multiFactor.user.email);
         this.router.navigate(['/home']);
       }
     ).catch(err => {
@@ -27,8 +28,7 @@ export class LoginService {
   }
 
   isAdminLogin() {
-    console.log(this.loggedInUser)
-    return this.loggedInUser ? this.loggedInUser.user.multiFactor.user.email === "admin@gmail.com" : false;
+    return sessionStorage.getItem('loggedInUser') === "admin@gmail.com";
   }
 
 }
