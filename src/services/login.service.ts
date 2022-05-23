@@ -47,8 +47,8 @@ export class LoginService {
   }
 
   setUserData(userData: any) {
-    const tutorialsRef = this.db.list('hospitals');
-    tutorialsRef.push({
+    const hospitals = this.db.list('hospitals');
+    hospitals.push({
       "Name": userData.Name,
       "Email": userData.Email,
       "City": userData.City
