@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,7 +16,8 @@ export class LoginService {
   constructor(
     private afAuth: AngularFireAuth,
     private db: AngularFireDatabase,
-    private router: Router) { }
+    private router: Router,
+    private toastr: ToastrService) { }
 
   login(username: string, password: string) {
     this.afAuth.signInWithEmailAndPassword(username, password).then(
@@ -25,7 +27,7 @@ export class LoginService {
         this.router.navigate(['/home']);
       }
     ).catch(err => {
-      console.log(err)
+      this.toastr.error("Invalid Username or Password", "Invalid Login")
     })
   }
 

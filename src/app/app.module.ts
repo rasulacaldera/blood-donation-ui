@@ -14,6 +14,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginModule } from './login/login.module';
 import { AuthGuard } from 'src/guards/auth-guard';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AuthGuard } from 'src/guards/auth-guard';
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebase),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
