@@ -23,8 +23,12 @@ export class LoginService {
     this.afAuth.signInWithEmailAndPassword(username, password).then(
       res => {
         this.loggedInUser = res
-        sessionStorage.setItem('loggedInUser', this.loggedInUser.user.multiFactor.user.email);
-        this.router.navigate(['/home']);
+        if (res.user?.emailVerified || this.loggedInUser.user.multiFactor.user.email === "admin@gmail.com") {
+          sessionStorage.setItem('loggedInUser', this.loggedInUser.user.multiFactor.user.email);
+          this.router.navigate(['/home']);
+        } else {
+          this.toastr.error("Verify Email address", "Email not verified")
+        }
       }
     ).catch(err => {
       this.toastr.error("Invalid Username or Password", "Invalid Login")
@@ -41,11 +45,18 @@ export class LoginService {
       .createUserWithEmailAndPassword(registerUser.Email, registerUser.Password)
       .then((result) => {
         this.setUserData(registerUser);
+        this.sendVerificationEmail()
+        this.toastr.info("Please check emails and validate the email address", "Validate Email")
         this.router.navigate(['/login']);
       })
       .catch((error) => {
         window.alert(error.message);
       });
+  }
+
+  sendVerificationEmail() {
+    return this.afAuth.currentUser
+      .then((u: any) => u.sendEmailVerification());
   }
 
   setUserData(userData: any) {
