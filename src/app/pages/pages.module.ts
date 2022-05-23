@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BloodGrpsComponent } from './stats/blood-grps/blood-grps.component';
 import { NgChartsModule } from 'ng2-charts';
 import { TopDonorsComponent } from './stats/top-donors/top-donors.component';
+import { TotalDonorsComponent } from './stats/total-donors/total-donors.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TopDonorsComponent } from './stats/top-donors/top-donors.component';
     PostShowComponent,
     PostCreateComponent,
     BloodGrpsComponent,
-    TopDonorsComponent
+    TopDonorsComponent,
+    TotalDonorsComponent
   ],
   imports: [
     CommonModule,

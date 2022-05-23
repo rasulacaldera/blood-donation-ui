@@ -2,13 +2,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ChartData, ChartOptions } from 'chart.js';
 
 @Component({
-  selector: 'top-donors',
-  templateUrl: './top-donors.component.html',
-  styleUrls: ['./top-donors.component.scss']
+  selector: 'total-donors',
+  templateUrl: './total-donors.component.html',
+  styleUrls: ['./total-donors.component.scss']
 })
-export class TopDonorsComponent {
+export class TotalDonorsComponent {
 
-  @Input() data: any = []
+  @Input() activeDonors: any = undefined
+  @Input() totalDonors: any = undefined
 
   public salesData: ChartData<'line'> = {
     labels: [],
@@ -29,20 +30,11 @@ export class TopDonorsComponent {
   constructor() { }
 
   ngOnChanges() {
-
-    let labels = [];
-    let data = []
-
-    for (const donor of this.data) {
-      labels.push(donor.Name)
-      data.push(donor.TotalDonate)
-    }
-
-
+    let inactiveCount = this.totalDonors - this.activeDonors
     this.salesData = {
-      labels: labels,
+      labels: ["Active Donors", "Inactive Donors"],
       datasets: [{
-        data: data
+        data: [this.activeDonors, inactiveCount]
       }],
     };
   }
