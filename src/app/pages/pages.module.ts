@@ -8,6 +8,8 @@ import { PostsComponent } from './posts/posts.component';
 import { PostShowComponent } from './posts/post-show/post-show.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BloodGrpsComponent } from './stats/blood-grps/blood-grps.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -16,12 +18,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     StatsComponent,
     PostsComponent,
     PostShowComponent,
-    PostCreateComponent
+    PostCreateComponent,
+    BloodGrpsComponent
   ],
   imports: [
     CommonModule,
     PagesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgChartsModule
   ]
 })
 export class PagesModule { }
