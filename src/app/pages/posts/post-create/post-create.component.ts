@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -23,7 +24,9 @@ export class PostCreateComponent implements OnInit {
     Contact: new FormControl('')
   });
 
-  constructor(private db: AngularFireDatabase, private router: Router) { }
+  constructor(private db: AngularFireDatabase,
+    private router: Router,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -32,7 +35,7 @@ export class PostCreateComponent implements OnInit {
     const posts = this.db.list('posts');
     posts.push(this.postForm.value);
     this.onCreateNewPost.emit()
-
+    this.toastr.success("Post created Successfully", "Success")
   }
 
   saveBtnEnabled() {
