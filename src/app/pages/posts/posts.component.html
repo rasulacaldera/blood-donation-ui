@@ -11,7 +11,9 @@
   </div>
 </div>
 <post-show *ngIf="isViewMode"></post-show>
-<post-create
-  *ngIf="!isViewMode"
-  (onCreateNewPost)="onCreateNewPost()"
-></post-create>
+<div class="post-create-container">
+  <post-create
+    *ngIf="!isViewMode"
+    (onCreateNewPost)="onCreateNewPost()"
+  ></post-create>
+</div>
