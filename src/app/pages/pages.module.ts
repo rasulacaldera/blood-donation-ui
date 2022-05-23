@@ -10,6 +10,7 @@ import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BloodGrpsComponent } from './stats/blood-grps/blood-grps.component';
 import { NgChartsModule } from 'ng2-charts';
+import { TopDonorsComponent } from './stats/top-donors/top-donors.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NgChartsModule } from 'ng2-charts';
     PostsComponent,
     PostShowComponent,
     PostCreateComponent,
-    BloodGrpsComponent
+    BloodGrpsComponent,
+    TopDonorsComponent
   ],
   imports: [
     CommonModule,
